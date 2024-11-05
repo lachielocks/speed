@@ -19,6 +19,19 @@ Unless specified in the file, HexGL's code and resources are now licensed under 
 	chromium index.html
 
 To use full size textures, swap the two textures/ and textures.full/ directories.
+## Installation Linux
+
+Run 'hexgl_installer.run' in the terminal.
+	chmod +x hexgl_installer.run
+    $ ./hexgl_installer.run
+### Building for linux
+
+
+I have added makeself build ability.
+Cut the files in the root of the repo besides for the installer into /hexgl-makeself/hexgl_files
+Then fork makeself and use makeself.sh with this command:
+	'makeself.sh hexgl-makeself hexgl_installer.run' "HexGL Installer" ./installer.sh
+Then it should work.
 
 ## Note
 

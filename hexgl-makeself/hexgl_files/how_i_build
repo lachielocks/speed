@@ -1,0 +1,1 @@
+makeself.sh hexgl hexgl_installer.run "HexGL Installer" ./installer.sh
