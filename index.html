@@ -1,108 +1,121 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>HexGL by BKcore</title>
+    <title>HexGL Racing</title>
     <meta charset="utf-8">
-    <meta name="description" content="HexGL is a futuristic racing game built by Thibaut Despoulain (BKcore) using HTML5, Javascript and WebGL. Come challenge your friends on this fast-paced 3D game!">
-    <meta property="og:title" content="HexGL, the HTML5 futuristic racing game." />
-    <meta property="og:type" content="game" />
-    <meta property="og:url" content="http://hexgl.bkcore.com/" />
-    <meta property="og:image" content="http://hexgl.bkcore.com/image.png" />
-    <meta property="og:site_name" content="HexGL by BKcore" />
-    <meta property="fb:admins" content="1482017639" />
-    <link rel="icon" href="http://hexgl.bkcore.com/favicon.png" type="image/png">
-    <link rel="shortcut icon" href="http://hexgl.bkcore.com/favicon.png" type="image/png">
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="css/multi.css" type="text/css" charset="utf-8">
-    <link rel="stylesheet" href="css/fonts.css" type="text/css" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <style>
       body {
-        padding:0;
-        margin:0;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        background: #000;
+        font-family: 'Droid Sans', Arial, sans-serif;
       }
-      canvas { pointer-events:none; width: 100%;}
-      #overlay{
+      canvas { 
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      #overlay {
         position: absolute;
         z-index: 9999;
         top: 0;
         left: 0;
         width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      #progress-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 10000;
+      }
+      #progressbar {
+        height: 5px;
+        width: 80%;
+        background: #333;
+        border-radius: 3px;
+        margin-top: 20px;
+      }
+      #progressbar:after {
+        content: '';
+        display: block;
+        height: 100%;
+        width: 0%;
+        background: #00b0ff;
+        border-radius: 3px;
+        transition: width 0.3s;
+      }
+      #loading-text {
+        color: #fff;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      #step-5 {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        z-index: 20000;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      #restart-btn {
+        background: #00b0ff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 20px;
+        margin-top: 20px;
+        cursor: pointer;
       }
     </style>
-    <script type="text/javascript">
-    //analytics
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-26274524-4']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-    </script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
   </head>
 
   <body>
-    <div id="step-1">
-      <div id="global"></div>
-      <div id="title">
-      </div>
-      <div id="menucontainer">
-        <div id="menu">
-          <div id="start">Start</div>
-          <div id="s-controlType">Controls: Keyboard</div>
-          <div id="s-quality">Quality: High</div>
-          <div id="s-hud">HUD: On</div>
-          <div id="s-godmode" style="display: none">Godmode: Off</div>
-          <div id="s-credits">Credits</div>
-        </div>
-      </div>
-    </div>
-    <div id="step-2" style="display: none">
-      <div id="ctrl-help">Click/Touch to continue.</div>
-    </div>
-    <div id="step-3" style="display: none">
+    <div id="progress-container">
+      <div id="loading-text">Loading HexGL...</div>
       <div id="progressbar"></div>
     </div>
-    <div id="step-4" style="display: none">
+
+    <div id="step-4">
       <div id="overlay"></div>
       <div id="main"></div>
     </div>
-    <div id="step-5" style="display: none">
+
+    <div id="step-5">
       <div id="time"></div>
-      <div id="ctrl-help">Click/Touch to continue.</div>
-    </div>
-    <div id="credits" style="display: none">
-      <h3>Code</h3>
-      <p><b>Concept and Development</b><br>Thibaut Despoulain (BKcore)</p>
-      <p><b>Contributors</b><br>townxelliot<br>mahesh.kk</p>
-      <p><b>Technologies</b><br>WebGL<br>JavaScript<br>CoffeeScript<br>Three.js<br>LeapMotion</p>
-      <h3>Graphics</h3>
-      <p><b>HexMKI base model</b><br>Charnel</p>
-      <p><b>Track texture</b><br>Nobiax</p>
-      <h4>Click anywhere to continue.</h4>
+      <div id="gameover-text">Race Completed!</div>
+      <button id="restart-btn">Play Again</button>
     </div>
 
-    <div id="leapinfo" style="display: none"></div>
-
-    <script src="libs/leap-0.4.1.min.js"></script>
-    <script src="libs/Three.dev.js"></script>
+    <script src="libs/Three.js"></script>
     <script src="libs/ShaderExtras.js"></script>
     <script src="libs/postprocessing/EffectComposer.js"></script>
     <script src="libs/postprocessing/RenderPass.js"></script>
     <script src="libs/postprocessing/BloomPass.js"></script>
-    <script src="libs/postprocessing/ShaderPass.js"></script>
-    <script src="libs/postprocessing/MaskPass.js"></script>
     <script src="libs/Detector.js"></script>
     <script src="libs/Stats.js"></script>
-    <script src="libs/DAT.GUI.min.js"></script>
 
     <script src="bkcore.coffee/controllers/TouchController.js"></script>
-    <script src="bkcore.coffee/controllers/OrientationController.js"></script>
-    <script src="bkcore.coffee/controllers/GamepadController.js"></script>
-
     <script src="bkcore.coffee/Timer.js"></script>
-    <script src="bkcore.coffee/ImageData.js"></script>
     <script src="bkcore.coffee/Utils.js"></script>
 
     <script src="bkcore/threejs/RenderManager.js"></script>
@@ -125,5 +138,28 @@
 
     <script src="launch.js"></script>
 
+    <script>
+      // Адаптация для Telegram WebApp
+      if (typeof Telegram !== 'undefined') {
+        Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
+        Telegram.WebApp.MainButton.hide();
+        
+        // Обработка изменения размера экрана
+        Telegram.WebApp.onEvent('viewportChanged', function() {
+          if (window.hexGL) {
+            window.hexGL.resize(
+              Telegram.WebApp.viewportWidth,
+              Telegram.WebApp.viewportHeight
+            );
+          }
+        });
+      }
+      
+      // Обработчик рестарта
+      document.getElementById('restart-btn').addEventListener('click', function() {
+        window.location.reload();
+      });
+    </script>
   </body>
 </html>
