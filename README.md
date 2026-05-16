@@ -1,26 +1,19 @@
 HexGL
 =========
 
-Source code of [HexGL](http://hexgl.bkcore.com), the futuristic HTML5 racing game by [Thibaut Despoulain](http://bkcore.com)
-
-## Branches
-  * **[Master](https://github.com/BKcore/HexGL)** - Public release (stable).
+Futuristic HTML5 racing game using WebGL.
 
 ## License
 
-Unless specified in the file, HexGL's code and resources are now licensed under the *MIT License*.
+Unless specified in the file, HexGL's code and resources are licensed under the MIT License (see [LICENSE](LICENSE)).
 
 ## Installation
 
-	cd ~/
-	git clone git://github.com/BKcore/HexGL.git
-	cd HexGL
-	python -m SimpleHTTPServer
-	chromium index.html
+```bash
+git clone https://github.com/lachielocks/speed.git
+cd speed
+python3 -m http.server
+# Open http://localhost:8000 in your browser
+```
 
-To use full size textures, swap the two textures/ and textures.full/ directories.
-
-## Note
-
-The development of HexGL is in a hiatus for now until I find some time and interest to work on it again.
-That said, feel free to post issues, patches, or anything to make the game better and I'll gladly review and merge them.
+To use full size textures, swap the two `textures/` and `textures.full/` directories.

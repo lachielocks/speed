@@ -1,5 +1,4 @@
 /**
- * @author Thibaut Despoulain / http://bkcore.com
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
  */
@@ -45,7 +44,7 @@ bkcore.threejs.Shaders =
 
 	/* ------------------------------------------------------------------------------------------------
 	//	Hexagonal Vignette shader
-	//  by BKcore.com
+	//  Hexagonal vignette shader
 	 ------------------------------------------------------------------------------------------------ */
 
 	'hexvignette': {
@@ -120,7 +119,6 @@ bkcore.threejs.Shaders =
 	//		- Blinn-Phong
 	//		- normal + diffuse + specular + AO + displacement + reflection + shadow maps
 	//		- PER-PIXEL point and directional lights (use with "lights: true" material option)
-	//		- modified by BKcore
 	 ------------------------------------------------------------------------- */
 
 	'normal' : {

@@ -4,7 +4,6 @@
   OrientationController (Orientation + buttons) for touch devices
   
   @class bkcore.OrientationController
-  @author Thibaut 'BKcore' Despoulain <http://bkcore.com>
 */
 
 

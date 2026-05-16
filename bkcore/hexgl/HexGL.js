@@ -1,8 +1,5 @@
  /*
  * HexGL
- * @author Thibaut 'BKcore' Despoulain <http://bkcore.com>
- * @license This work is licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License.
- *          To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/3.0/.
  */
 
 'use strict';
@@ -207,8 +204,6 @@ bkcore.hexgl.HexGL.prototype.displayScore = function(f, l)
 	var dl2 = this.document.getElementById("finish-lap2");
 	var dl3 = this.document.getElementById("finish-lap3");
 	var dd = this.document.getElementById("finish-diff")
-	var st = this.document.getElementById("finish-twitter");
-	var sf = this.document.getElementById("finish-fb");
 	var sl = this.document.getElementById("lowfps-msg");
 	var d = this.difficulty == 0 ? 'casual' : 'hard';
 	var ts = this.hud.timeSeparators;
@@ -263,12 +258,6 @@ bkcore.hexgl.HexGL.prototype.displayScore = function(f, l)
 	}
 
 	dd != undefined && (dd.innerHTML = d);
-	st != undefined && (st.href='http://twitter.com/share?text='+encodeURIComponent('I just scored '+dt.innerHTML+' in '+'Cityscape ('+d+') on #HexGL! Come try it and beat my record on '));
-	sf != undefined && (sf.href='http://www.facebook.com/sharer.php?s=100'
-		+'&p[title]='+encodeURIComponent('I just scored '+dt.innerHTML+' in '+'Cityscape ('+d+') on HexGL!')
-		+'&p[summary]='+encodeURIComponent('HexGL is a futuristic racing game built by Thibaut Despoulain (BKcore) using HTML5, Javascript and WebGL. Come challenge your friends on this fast-paced 3D game!')
-		+'&p[url]='+encodeURIComponent('http://hexgl.bkcore.com')
-		+'&p[images][0]='+encodeURIComponent('http://hexgl.bkcore.com/image.png'));
 
 	bkcore.hexgl.Ladder.displayLadder('finish-ladder', t, d, 8);
 

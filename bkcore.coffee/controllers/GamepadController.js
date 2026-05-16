@@ -3,7 +3,6 @@
   GamepadController (Orientation + buttons) for touch devices
 
   @class bkcore.GamepadController
-  @author Mahesh Kulkarni <http://twitter.com/maheshkk>
 */
 
 
