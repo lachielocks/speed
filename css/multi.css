@@ -87,12 +87,10 @@ html, body {
   bottom: 5%;
   left: 0;
   z-index: 1;
-  background: url('title.png') no-repeat center top;
-  -moz-background-size: auto 50%;
-  -webkit-background-size: auto 50%;
-  -ms-background-size: auto 50%;
-  -o-background-size: auto 50%;
-  background-size: auto 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  pointer-events: none;
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -o-transform: translateZ(0);
@@ -101,6 +99,14 @@ html, body {
   -moz-animation: anim 3s ease-in-out infinite;
   -o-animation: anim 3s ease-in-out infinite;
   animation: anim 3s ease-in-out infinite;
+}
+
+#title svg,
+#title img {
+  width: min(92vw, 760px);
+  height: auto;
+  max-height: 50vh;
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.35));
 }
 
 #menucontainer {

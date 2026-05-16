@@ -1,5 +1,5 @@
 /*
- * HexGL
+ * SPEED
  */
 
 var bkcore = bkcore || {};

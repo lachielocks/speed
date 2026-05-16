@@ -1,6 +1,6 @@
 {
-    "name": "HexGL",
-    "description": "HexGL v1.0.1-ffos",
+    "name": "SPEED",
+    "description": "SPEED v1.0.1",
     "launch_path": "/index.html",
     "icons": {
         "128": "/icon_128.png"

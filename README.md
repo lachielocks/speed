@@ -1,11 +1,11 @@
-HexGL
+SPEED
 =========
 
 Futuristic HTML5 racing game using WebGL.
 
 ## License
 
-Unless specified in the file, HexGL's code and resources are licensed under the MIT License (see [LICENSE](LICENSE)).
+Unless specified in the file, SPEED's code and resources are licensed under the MIT License (see [LICENSE](LICENSE)).
 
 ## Installation
 
